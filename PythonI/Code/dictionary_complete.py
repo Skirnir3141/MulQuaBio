@@ -19,8 +19,25 @@ taxa = [ ('Myotis lucifugus','Chiroptera'),
 # OR, 
 # 'Chiroptera': {'Myotis  lucifugus'} ... etc
 
-#### Your solution here #### 
+# Capture distinct orders
+orders = []
+for i in taxa:
+    if i[1] not in orders:
+        orders.append(i[1])
+
+# Create dic and populate order names for keys and empty lists for values
+taxa_dic = {}
+for i in orders:
+    taxa_dic[i] = []
+
+# Populate empty list with species
+for i in taxa:
+    taxa_dic[i[1]].append(i[0])
+
 
 # Now write a list comprehension that does the same (including the printing after the dictionary has been created)  
- 
-#### Your solution here #### 
+
+# Took the basic solution from stackoverflow...more or less understand what it's doing...seems 
+# like an example of a too complicated comprehension and this would be much more readable if done with loops.
+print({val: [key for key, vv in dict(taxa).items() if vv == val] for val in dict(taxa).values()})
+
